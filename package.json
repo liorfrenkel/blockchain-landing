@@ -1,0 +1,37 @@
+{
+  "name": "blockchain-landing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/liorfrenkel/blockchain-landing.git",
+  "author": "Lior Frenkel <frenkeldev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.4.4",
+    "clean-css": "^4.2.1",
+    "copyfiles": "^2.1.0",
+    "live-server": "^1.2.1",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.0",
+    "replace": "^1.0.1",
+    "rimraf": "^2.6.3"
+  },
+  "scripts": {
+    "prestart": "npm run build-sass",
+    "start": "npm-run-all -p watch-css server",
+    "server": "live-server ./src/",
+    "clean": "rimraf build && mkdirp ./build/styles/ && mkdirp ./build/scripts/ && mkdirp ./build/assets/",
+    "watch-css": "node-sass -w --precision 8 ./src/styles/app.scss ./src/styles/app.css",
+    "build": "npm-run-all -s build-html build-sass build-css build-assets",
+    "prebuild": "npm run clean",
+    "build-html": "copyfiles -u 1 src/index.html build",
+    "build-sass": "node-sass --precision 8 ./src/styles/app.scss | postcss -u autoprefixer > ./src/styles/app.css",
+    "build-css": "cleancss --skip-rebase -o ./build/styles/app.min.css ./src/styles/app.css && replace app.css app.min.css build/index.html",
+    "build-assets": "copyfiles -u 1 ./src/assets/*.* ./build/",
+    "try-build": "live-server ./build/"
+  }
+}
