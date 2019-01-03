@@ -20,12 +20,27 @@ a {
   text-decoration: none;
 }
 
+.bg {
+  display: none;
+  width: 100%;
+  height: 22%;
+  background-image: url('../assets/logo-big-left.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: absolute;
+  z-index: -1;
+
+  &.bottom {
+    display: block;
+    bottom: 0;
+    background-size: cover;
+  }
+}
 @media (min-width: map-get($breakpoints, 'lg')) {
   .bg {
+    display: block;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/logo-big-left.png');
-    background-repeat: no-repeat;
     background-position: left center;
     position: absolute;
     top: 0;
@@ -42,6 +57,9 @@ a {
       transform: scaleX(-1);
       filter: FlipH;
       -ms-filter: "FlipH";
+    }
+    &.bottom {
+      display: none;
     }
   }
 }
