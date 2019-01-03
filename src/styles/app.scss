@@ -1,10 +1,101 @@
 @import 'reset';
+@import 'logo';
 
 html, body {
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 body {
-  background-color: #f2f2f2;
+  background-color: $color-bg;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: $color-text;
+  overflow-x: hidden;
+}
+
+a {
+  color: $color-text;
+  text-decoration: none;
+}
+
+@media (min-width: map-get($breakpoints, 'lg')) {
+  .bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/logo-big-left.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  
+    &.left {
+      left: -450px;
+    }
+    &.right {
+      right: -450px;
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'xl')) {
+  .bg {
+    &.left {
+      left: -300px;
+    }
+    &.right {
+      right: -300px;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.col {
+  flex: 1;
+}
+
+.text-block {
+  max-width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+
+@media (min-width: map-get($breakpoints, 'md')) {
+  .text-block {
+    max-width: 400px;
+  }
+}
+
+.separator {
+  width: 17px;
+  border-bottom: #000000 solid 6px;
+  margin: $margin-col auto;
+}
+
+.email {
+  font-size: 0.95rem;
 }
